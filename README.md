@@ -1,2 +1,2 @@
 # simplePPT
-A sample PPT tool
+A simple PPT tool

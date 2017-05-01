@@ -1,0 +1,130 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+	font-size: 16px;
+}
+* {
+	box-sizing: inherit;
+}
+.container {
+	box-sizing:border-box;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #d9d9d9;
+}
+.container .container-head {
+	width: 100%;
+	height: 10%;
+	background-color: rgba(40, 40, 40 ,0.5);
+}
+.container .container-head .btn {
+	font-size: 1.5em;
+	padding: 0.5em 1em;
+    border: 1px solid #d4d4d4;
+    margin: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #ececec;
+    border-radius: 0.2em;
+}
+.container .container-body {
+	box-sizing:border-box;
+	width: 100%;
+	height: 80%;
+	border: 1px solid #d9d9d9;
+	background-color: rgba(0, 0, 0, 0.8);			
+}
+.container .container-body .ppt {
+	width: 100%;
+	height: 99%;
+	display: flex;
+	flex-direction: row;
+}
+.container .container-body .ppt-progress {
+	width: 100%;
+	height: 1%;
+}
+.container .container-body .ppt .ppt-left {
+	width: 10%;
+	position: relative;
+}
+.container .container-body .ppt .ppt-center {
+	width: 80%;
+}
+.container .container-body .ppt .ppt-center .ppt-title {
+	height: 20%;
+	color: #fff;
+	text-align: center;
+	font-size: 3em;
+	padding: 20px;
+	font-weight: bold;
+}
+.container .container-body .ppt .ppt-center .ppt-content {
+	height: 80%;
+	color: #fff;
+	text-align: center;
+	font-size: 2em;
+	padding: 20px;
+}
+.container .container-body .ppt .ppt-right {
+	width: 10%;
+	position: relative;
+}
+.container .container-body .ppt .ppt-right aside {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.container .container-body .ppt .ppt-right aside .previous {
+	width: 0;
+	height: 0;
+	cursor: pointer;
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	border-top: 30px solid rgba(19, 218, 236, 0.9);
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg); 	/* IE 9 */
+	-moz-transform:rotate(90deg); 	/* Firefox */
+	-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+	-o-transform:rotate(90deg); 	/* Opera */
+}
+.container .container-body .ppt .ppt-right aside .previous.disable {
+	border-top: 30px solid rgba(19, 218, 236, 0.1);
+}
+.container .container-body .ppt .ppt-right aside .next {
+	width: 0;
+	height: 0;
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	border-top: 30px solid rgba(19, 218, 236, 0.9);
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg); 	/* IE 9 */
+	-moz-transform:rotate(-90deg); 	/* Firefox */
+	-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+	-o-transform:rotate(-90deg); 	/* Opera */
+}
+.container .container-body .ppt .ppt-right aside .next.disable {
+	border-top: 30px solid rgba(19, 218, 236, 0.1);
+}
+.container .container-footer {
+	box-sizing:border-box;
+	width: 100%;
+	height: 10%;
+	background-color: rgba(40, 40, 40 ,0.5);
+}
