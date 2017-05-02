@@ -17,6 +17,13 @@ window.onload = function(){
 
 	// 初始化页面内容
 	(function init() {
+		$.getJSON ("js/db.txt", function (data)  
+        {  
+            $.each (data, function (i, item)  
+            {  
+                console.log([i, item.title]);
+            });  
+        }); 
 		currentPPT = getPPT(currentPage);
 		setPPT(currentPPT);
 	})();

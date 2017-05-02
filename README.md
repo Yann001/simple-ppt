@@ -7,5 +7,24 @@ A simple PPT tool
 
 ### 文件结构介绍
 
+```
+simplePPT
+|----css
+|    |----main.css
+|
+|----images
+|    |----*.jpg
+|
+|----js
+|    |----main.js
+|    |----utils.js
+|
+|----.gitignore
+|----LICENCE
+|----README.md
+|----index.html
+```
+
+
 
 
