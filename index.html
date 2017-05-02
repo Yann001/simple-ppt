@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,height=device-height,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<link rel="stylesheet" href="css/main.css">
 	<title>Simple PPT</title>
 </head>
@@ -14,7 +14,11 @@
 		</div>
 		<div class="container-body">
 			<div class="ppt">
-				<div class="ppt-left">					
+				<div class="ppt-left">
+					<div class="page">
+						<span class="currentPage" id="current-page">2</span>/
+						<span class="totalPage" id="total-page">5</span>
+					</div>					
 				</div>
 				<div class="ppt-center">
 					<div class="plugin plugin-text ppt-title" id="ppt-title"></div>
@@ -31,6 +35,7 @@
 		</div>
 		<div class="container-footer"></div>
 	</div>
+	<script src="js/utils.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>

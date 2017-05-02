@@ -10,56 +10,89 @@ window.onload = function(){
 	let pluginTexts = document.querySelectorAll('.plugin-text');
 	let plugins = document.querySelectorAll('.plugin');
 
-	let currentPage = 0;
+	let currentPage = 1;
+	let currentPPT = null;
 
-	let ppt = [{
-		page: 1,
-		title: '这里是标题1',
-		content: '这里是内容1'
-	}, {
-		page: 2,
-		title: '这里是标题2',
-		content: '这里是内容2'
-	}, {
-		page: 3,
-		title: '这里是标题3',
-		content: '这里是内容3'
-	}];
+	let h5LS = new H5_LS();
+
 	// 初始化页面内容
 	(function init() {
-		pptTitle.innerHTML = ppt[0].title;
-		pptContent.innerHTML = ppt[0].content;
+		currentPPT = getPPT(currentPage);
+		setPPT(currentPPT);
 	})();
+
+	// 封装从LocalStorage获取PPT方法
+	function getPPT(page) {
+		let ppt = h5LS.getLocalStorage('ppt' + page);
+		return JSON.parse(ppt);
+	}
+
+	// 封装设置PPT页面内容方法
+	function setPPT(ppt) {
+		if(ppt) {
+			pptTitle.innerHTML = ppt.title;
+			pptContent.innerHTML = ppt.content;
+		}
+		else {
+			pptTitle.innerHTML = '请添加一个标题';
+			pptContent.innerHTML = '请添加内容';
+		}
+	}
+
+	// 绑定保存按钮事件
+	saveBtn.addEventListener('click', () => {
+		let pptObj = {
+			page: currentPage,
+			title: pptTitle.innerHTML,
+			content: pptContent.innerHTML
+		}
+		h5LS.setLocalStorage('ppt' + pptObj.page, JSON.stringify(pptObj));
+	});
 
 	// 绑定下一页按钮事件
 	pptNext.addEventListener('click', () => {
 		currentPage++;
-		pptTitle.innerHTML = ppt[currentPage].title;
-		pptContent.innerHTML = ppt[currentPage].content;
+		if(currentPage === 1) {
+			pptPrevious.className = 'previous disable';
+		}
+		else {
+			pptPrevious.className = 'previous';
+		}
+		currentPPT = getPPT(currentPage);
+		setPPT(currentPPT);
 	}, false);
 
 	// 绑定上一页按钮事件
 	pptPrevious.addEventListener('click', () => {
 		currentPage--;
-		pptTitle.innerHTML = ppt[currentPage].title;
-		pptContent.innerHTML = ppt[currentPage].content;
+		currentPage = currentPage < 1 ? 1 : currentPage;
+		if(currentPage === 1) {
+			pptPrevious.className = 'previous disable';
+		}
+		else {
+			pptPrevious.className = 'previous';
+		}
+		currentPPT = getPPT(currentPage);
+		setPPT(currentPPT);
 	}, false);
 
 	//plugin-text 双击编辑事件
-	pluginTexts.forEach((item)=>{
-		item.addEventListener('dblclick',()=>{
+	pluginTexts.forEach((item) => {
+		item.addEventListener('dblclick', () => {
 			item.setAttribute('contenteditable','true');
 			item.focus();
 		});
-		item.addEventListener('blur',(evt)=>{
+		item.addEventListener('blur', (evt) => {
 			item.setAttribute('contenteditable','false');
-			evt.target.style.border='none';
+			evt.target.style.border = 'none';
 		},true)
 	});
-	document.body.addEventListener('click',function(evt){
-		plugins.forEach((item)=>{item.style.border = 'none';});
-		if(evt.target.className.indexOf('plugin')+1){
-			evt.target.style.border='1px solid blue'
+
+	document.body.addEventListener('click', function(evt) {
+		plugins.forEach((item) => { item.style.border = 'none'; });
+		if(evt.target.className.indexOf('plugin') + 1) {
+			evt.target.style.border='1px solid blue';
 		}
 	});
+
 };

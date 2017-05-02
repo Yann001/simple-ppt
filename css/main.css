@@ -54,6 +54,18 @@ body {
 	width: 10%;
 	position: relative;
 }
+.container .container-body .ppt .ppt-left .page {	
+	width:100px
+	height: 100px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: #fff;
+	font-size: 2em;
+}
+.container .container-body .ppt .ppt-left .page span {	
+	
+}
 .container .container-body .ppt .ppt-center {
 	width: 80%;
 	overflow: hidden;
