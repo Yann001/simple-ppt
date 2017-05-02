@@ -8,6 +8,7 @@ window.onload = function(){
 
 	//可编辑文本区域
 	let pluginTexts = document.querySelectorAll('.plugin-text');
+	let plugins = document.querySelectorAll('.plugin');
 
 	let currentPage = 0;
 
@@ -48,8 +49,17 @@ window.onload = function(){
 	pluginTexts.forEach((item)=>{
 		item.addEventListener('dblclick',()=>{
 			item.setAttribute('contenteditable','true');
-			item.setAttribute('designMode','on');
 			item.focus();
 		});
+		item.addEventListener('blur',(evt)=>{
+			item.setAttribute('contenteditable','false');
+			evt.target.style.border='none';
+		},true)
+	});
+	document.body.addEventListener('click',function(evt){
+		plugins.forEach((item)=>{item.style.border = 'none';});
+		if(evt.target.className.indexOf('plugin')+1){
+			evt.target.style.border='1px solid blue'
+		}
 	});
 };
