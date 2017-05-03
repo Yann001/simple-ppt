@@ -1,3 +1,4 @@
+/*初始化*/
 html,
 body {
 	margin: 0;
@@ -6,9 +7,15 @@ body {
 	height: 100%;
 	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 	font-size: 16px;
+	overflow: hidden;
 }
 * {
 	box-sizing: inherit;
+}
+ul{
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
 }
 .container {
 	box-sizing:border-box;
@@ -16,11 +23,11 @@ body {
 	height: 100%;
 	border: 1px solid #d9d9d9;
 }
-.container .container-head {
+/* .container .container-head {
 	width: 100%;
 	height: 10%;
 	background-color: rgba(40, 40, 40 ,0.5);
-}
+} 
 .container .container-head .btn {
 	font-size: 1.5em;
 	padding: 0.5em 1em;
@@ -33,16 +40,11 @@ body {
     cursor: pointer;
     background-color: #ececec;
     border-radius: 0.2em;
-}
-.container .container-body {
-	width: 100%;
-	height: 80%;
-	border: 1px solid #d9d9d9;
-	background-color: rgba(0, 0, 0, 0.8);			
-}
+}*/
+
 .container .container-body .ppt {
 	width: 100%;
-	height: 99%;
+	height: 100%;
 	display: flex;
 	flex-direction: row;
 }
@@ -55,8 +57,8 @@ body {
 	position: relative;
 }
 .container .container-body .ppt .ppt-left .page {	
-	width:100px
-	height: 100px;
+	width:100px;
+	/* height: 100px; */
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -134,8 +136,58 @@ body {
 .container .container-body .ppt .ppt-right aside .next.disable {
 	border-top: 30px solid rgba(19, 218, 236, 0.1);
 }
+
+/*整体布局*/
+aside{
+	width: 60px;
+	height: 100%;
+	float: left;
+	position: absolute;
+	z-index: 1;
+}
+aside ul.toolbar{
+	width: 100%;
+	padding: 5px;
+}
+aside ul.toolbar li{
+	margin-bottom: 5px; 
+}
+aside ul.toolbar .btn{
+	display: inline-block;
+	text-decoration: none;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: hsl(168, 76%, 42%);
+	color: #fff;
+	border: none;
+	font-size: 14px;
+}
+aside ul.toolbar .btn:hover{
+	background-color: hsla(168, 76%, 50%, 1);
+}
+article{
+	float: right;
+	height: 100%;
+	width: 100%;
+	padding-left: 60px;
+	overflow: hidden;
+	position: relative;
+}
+.container .container-body {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 50px;
+	border: 1px solid #d9d9d9;
+	background-color: rgba(0, 0, 0, 0.8);			
+}
 .container .container-footer {
 	width: 100%;
-	height: 10%;
+	height: 50px;
+    border: 1px solid #d9d9d9;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
 	background-color: rgba(40, 40, 40 ,0.5);
 }
