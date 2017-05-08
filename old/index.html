@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/lib/jquery-3.2.1.min.js"></script>
+	<title>Simple PPT</title>
+</head>
+<body>
+	<div class="container">
+		<aside>
+			<ul class="toolbar">
+				<li><a href="javascript:void(0)" class="btn btn-edit" id="btn-edit">编辑</a></li>
+				<li><a href="javascript:void(0)" class="btn btn-save" id="btn-save">保存</a></li>
+			</ul>
+		</aside>
+		<article>
+			<!-- <div class="container-head">
+				<button class="btn btn-edit" id="btn-edit">编辑</button>
+				<button class="btn btn-save" id="btn-save">保存</button>
+			</div> -->
+			<div class="container-body">
+				<div class="ppt">
+					<div class="ppt-left">
+						<div class="page">
+							<span class="currentPage" id="current-page">2</span>/
+							<span class="totalPage" id="total-page">5</span>
+						</div>					
+					</div>
+					<div class="ppt-center">
+						<div class="plugin plugin-text ppt-title" id="ppt-title"></div>
+						<div class="plugin plugin-text ppt-content" id="ppt-content"></div>
+					</div>
+					<div class="ppt-right">
+						<aside class="controls">
+							<div class="previous disable" id="ppt-previous"></div>
+							<div class="next" id="ppt-next"></div>
+						</aside>
+					</div>
+				</div>
+				<div class="ppt-progress"></div>
+			</div>
+			<div class="container-footer"></div>
+		</article>
+		
+	</div>
+	<script src="js/utils.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
