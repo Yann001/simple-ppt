@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import PPT from '@/components/PPT'
+import PPT from '@/components/ppt_com/PPT'
 
 Vue.use(Router)
 
