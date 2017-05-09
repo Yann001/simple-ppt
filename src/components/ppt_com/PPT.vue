@@ -52,6 +52,21 @@ export default {
   methods: {
     edit () {
       console.log('这是编辑事件')
+      let params = {
+        pptPage: 1
+      }
+      this.$http.post('/api/ppt/getPptPage', params)
+      .then((res) => {
+        console.log(res)
+        if (res.status === 200) {
+          console.log('保存成功！')
+        } else {
+          console.log('保存失败，请检查网络')
+        }
+      })
+      .catch((reject) => {
+        console.log(reject)
+      })
     },
     save () {
       console.log('这是保存事件')
