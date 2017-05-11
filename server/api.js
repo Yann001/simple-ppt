@@ -25,8 +25,9 @@ router.post('/api/ppt/addPptPage',(req, res) => {
 // 获取已有PPT页面
 router.post('/api/ppt/getPptPage', (req, res) => {
     // 通过模型去查找数据库
-    let pptPage = req.params.pptPage;
-    console.log(pptPage);
+    let pptPage = req.body.pptPage;
+    console.log(req.params);
+    console.log(req.body);
     models.registryModel.find({ppt_page: pptPage}, (err, data) => {
         if (err) {
             res.send(err);

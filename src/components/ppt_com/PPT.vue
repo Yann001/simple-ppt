@@ -15,14 +15,14 @@
       <div class="ppt">
         <div class="ppt-left">
           <div class="page">
-            <span class="currentPage" id="current-page">2</span>
+            <span class="currentPage" id="current-page">1</span>
             <span>/</span>
             <span class="totalPage" id="total-page">5</span>
           </div>
         </div>
         <div class="ppt-center">
-          <div class="plugin plugin-text ppt-title" id="ppt-title" v-model="pptTltie"></div>
-          <div class="plugin plugin-text ppt-content" id="ppt-content" v-model="pptContent"></div>
+          <div class="plugin plugin-text ppt-title" id="ppt-title"></div>
+          <div class="plugin plugin-text ppt-content" id="ppt-content"></div>
         </div>
         <div class="ppt-right">
           <aside class="controls">
@@ -44,16 +44,21 @@
 export default {
   name: 'ppt',
   data () {
-    return {
-      pptTltie: '这里是PPT标题',
-      pptContent: '这里是PPT内容'
-    }
+    return {}
   },
   methods: {
     edit () {
       console.log('这是编辑事件')
+    },
+    save () {
+      console.log('这是保存事件')
       let params = {
-        pptPage: 1
+        // pptPage: jQuery('#current-page').text(),
+        // pptTitle: $('#ppt-title').html(),
+        // pptContent: $('#ppt-content').html()
+        pptPage: 1,
+        pptTitle: 2,
+        pptContent: 3
       }
       this.$http.post('/api/ppt/getPptPage', params)
       .then((res) => {
@@ -67,9 +72,6 @@ export default {
       .catch((reject) => {
         console.log(reject)
       })
-    },
-    save () {
-      console.log('这是保存事件')
     },
     pptPrevious () {
       console.log('这是上一页事件')
