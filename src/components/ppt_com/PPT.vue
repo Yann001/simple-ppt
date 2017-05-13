@@ -21,8 +21,8 @@
           </div>
         </div>
         <div class="ppt-center">
-          <div class="plugin plugin-text ppt-title" id="ppt-title"></div>
-          <div class="plugin plugin-text ppt-content" id="ppt-content"></div>
+          <div class="plugin plugin-text ppt-title" id="ppt-title" @dblclick="modify"></div>
+          <div class="plugin plugin-text ppt-content" id="ppt-content" @dblclick="modify"></div>
         </div>
         <div class="ppt-right">
           <aside class="controls">
@@ -52,19 +52,18 @@ export default {
     },
     save () {
       console.log('这是保存事件')
+      console.log($('#ppt-title'))
       let params = {
-        // pptPage: jQuery('#current-page').text(),
-        // pptTitle: $('#ppt-title').html(),
-        // pptContent: $('#ppt-content').html()
-        pptPage: 1,
-        pptTitle: 2,
-        pptContent: 3
+        pptPage: $('#current-page').text(),
+        pptTitle: $('#ppt-title').html(),
+        pptContent: $('#ppt-content').html()
       }
-      this.$http.post('/api/ppt/getPptPage', params)
+      this.$http.post('/api/ppt/addPptPage', params)
       .then((res) => {
         console.log(res)
         if (res.status === 200) {
           console.log('保存成功！')
+          window.location.reload()
         } else {
           console.log('保存失败，请检查网络')
         }
@@ -72,6 +71,12 @@ export default {
       .catch((reject) => {
         console.log(reject)
       })
+    },
+    modify: function (e) {
+      let thisId = e.target.id
+      let $this = $('#' + thisId)
+      $this.css('border', '1px dotted #bac9ef')
+      $this.attr('contenteditable', true)
     },
     pptPrevious () {
       console.log('这是上一页事件')
