@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @load="init">
   <!-- <aside>
     <ul class="toolbar">
       <li><a href="javascript:void(0)" class="btn btn-edit" id="btn-edit" @click="edit">编辑</a></li>
@@ -15,14 +15,14 @@
       <div class="ppt">
         <div class="ppt-left">
           <div class="page">
-            <span class="currentPage" id="current-page">1</span>
+            <span class="currentPage" id="current-page">{{ pptCurrentPage }}</span>
             <span>/</span>
-            <span class="totalPage" id="total-page">5</span>
+            <span class="totalPage" id="total-page">{{ pptTotalPage }}</span>
           </div>
         </div>
         <div class="ppt-center">
-          <div class="plugin plugin-text ppt-title" id="ppt-title" @dblclick="modify"></div>
-          <div class="plugin plugin-text ppt-content" id="ppt-content" @dblclick="modify"></div>
+          <div class="plugin plugin-text ppt-title" id="ppt-title" v-html="pptTitle" @dblclick="modify"></div>
+          <div class="plugin plugin-text ppt-content" id="ppt-content" v-html="pptContent" @dblclick="modify"></div>
         </div>
         <div class="ppt-right">
           <aside class="controls">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="ppt-progress">
-        <div class="progressbar"></div>
+        <div class="progressbar" :style="progressbarStyle"></div>
       </div>
     </div>
     <div class="container-footer"></div>
@@ -44,26 +44,54 @@
 export default {
   name: 'ppt',
   data () {
-    return {}
+    return {
+      pptTitle: '这里是标题',
+      pptContent: '这里是内容',
+      pptCurrentPage: 1,
+      pptTotalPage: 10
+    }
+  },
+  computed: {
+    progressbarStyle: function () {
+      let styleObj = {
+        width: this.pptCurrentPage / this.pptTotalPage * 100 + '%'
+      }
+      return styleObj
+    }
   },
   methods: {
+    init: function () {
+      let params = {
+        pptUid: 'this-is-a-false-uid',
+        pptPage: this.pptCurrentPage
+      }
+      console.log('send post, params is: ' + params)
+      this.$http.post('api/ppt/getPptPage', params)
+      .then((res) => {
+        console.log(res)
+        this.pptTitle = res.ppt_title
+        this.pptContent = res.ppt_content
+      })
+      .catch((reject) => {
+        console.log(reject)
+      })
+    },
     edit () {
       console.log('这是编辑事件')
     },
     save () {
       console.log('这是保存事件')
-      console.log($('#ppt-title'))
       let params = {
-        pptPage: $('#current-page').text(),
-        pptTitle: $('#ppt-title').html(),
-        pptContent: $('#ppt-content').html()
+        pptPage: this.pptCurrentPage,
+        pptTitle: this.pptTitle,
+        pptContent: this.pptContent
       }
       this.$http.post('/api/ppt/addPptPage', params)
       .then((res) => {
         console.log(res)
         if (res.status === 200) {
           console.log('保存成功！')
-          window.location.reload()
+          this.init()
         } else {
           console.log('保存失败，请检查网络')
         }
@@ -211,12 +239,12 @@ export default {
   bottom: 10px;
   border-top: 30px solid rgba(19, 218, 236, 0.9);
   border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  transform:rotate(90deg);
+  border-right: 15px solid transparent;  
   -ms-transform:rotate(90deg);  /* IE 9 */
   -moz-transform:rotate(90deg);   /* Firefox */
   -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
   -o-transform:rotate(90deg);   /* Opera */
+  transform:rotate(90deg);
 }
 
 .container .container-body .ppt .ppt-right aside .previous.disable {
@@ -232,12 +260,12 @@ export default {
   bottom: 10px;
   border-top: 30px solid rgba(19, 218, 236, 0.9);
   border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  transform:rotate(-90deg);
+  border-right: 15px solid transparent;  
   -ms-transform:rotate(-90deg);   /* IE 9 */
   -moz-transform:rotate(-90deg);  /* Firefox */
   -webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
   -o-transform:rotate(-90deg);  /* Opera */
+  transform:rotate(-90deg);
 }
 
 .container .container-body .ppt .ppt-right aside .next.disable {

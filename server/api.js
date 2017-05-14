@@ -8,12 +8,11 @@ router.post('/api/ppt/addPptPage',(req, res) => {
     // let guid = Guid.newGuid();
     // 这里的req.body能够使用就在index.js中引入了const bodyParser = require('body-parser')
     let newPpt = new models.pptModel({
-        ppt_uid : 'this-is-a-false-guid',
+        ppt_uid : 'this-is-a-false-uid',
         ppt_page : req.body.pptPage,
         ppt_title : req.body.pptTitle,
         ppt_content : req.body.pptContent
     });
-    console.log(newPpt);
     newPpt.save((err, data) => {
         if (err) {
             res.send(err);
@@ -25,13 +24,16 @@ router.post('/api/ppt/addPptPage',(req, res) => {
 // 获取已有PPT页面
 router.post('/api/ppt/getPptPage', (req, res) => {
     // 通过模型去查找数据库
-    let pptPage = req.body.pptPage;
-    console.log(req.params);
-    console.log(req.body);
-    models.registryModel.find({ppt_page: pptPage}, (err, data) => {
+    let pptUid = req.body.pptUid,
+        pptPage = req.body.pptPage;
+    // console.log("req.params" + req.params);
+    console.log("req.body is" + req.body);
+    // console.log("req.query" + req.query);
+    models.registryModel.find({ppt_uid: pptUid, ppt_page: pptPage}, (err, data) => {
         if (err) {
             res.send(err);
         } else {
+            console.log('data is' + data)
             res.send(data);
         }
     });
