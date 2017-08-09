@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;//为了解决过期的问题
 */
 mongoose.set('debug', true);
 /*mongoose会缓存命令，只要connect成功，处于其前其后的命令都会被执行，connect命令也就无所谓放哪里*/
-let db = mongoose.connect('mongodb://120.25.241.176/simpleppt');
+let db = mongoose.connect('mongodb://localhost/simpleppt');
 
 db.connection.on("error", function (error) {
   console.log("数据库连接失败：" + error);
